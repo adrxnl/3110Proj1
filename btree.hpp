@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include<queue>
 using namespace std;
 
 //#ifndef B_TREE_HPP
@@ -27,7 +28,6 @@ public:
     AVLTree();
     TreeMember* insert(TreeMember* currRoot, TreeMember* memberToAdd);
     TreeMember* search_with_ID(int searchID);
-    TreeMember* search_with_name(string searchName);
     void remove(int searchID);
     TreeMember* balance(TreeMember* targetMember);
     int get_height(TreeMember* targetMember);

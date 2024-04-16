@@ -39,12 +39,17 @@ TreeMember* AVLTree::search_with_ID(int searchID){
     }
 }
 
-TreeMember* AVLTree::search_with_name(string searchName){
+
+
+void AVLTree::remove(int searchID){
+    TreeMember* targetNode = search_with_ID(searchID);
+    if(targetNode = nullptr){
+        cout << "could not remove no target found wiht ID#" << searchID << endl;
+    }
+
     
 }
 
-
-TreeMember AVLTree::
 
 int AVLTree::get_height(TreeMember* targetMember){
     int height = 0;
