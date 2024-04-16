@@ -39,3 +39,31 @@ void linkedlist::remove(listMember* memberToRemove){
         delete memberToRemove;
     }
 }
+
+listMember* linkedlist::search_with_ID(int idtoSearch){
+    listMember* currMember = head;
+    while (currMember != nullptr){
+        if(currMember->ID == idtoSearch){
+            return currMember;
+        }
+        else{
+            currMember = currMember->next;
+        }
+    }
+    
+    return nullptr;
+}
+
+listMember* linkedlist::search_with_name(string nameToSearch){
+    listMember* currMember = head;
+    while (currMember != nullptr){
+        if(currMember->name == nameToSearch){
+            return currMember;
+        }
+        else{
+            currMember = currMember->next;
+        }
+    }
+    
+    return nullptr;
+}
