@@ -1,27 +1,37 @@
-#include "linkedlist.hpp"
+//H file call for linked list file
+#include "linkedlist.hpp" 
 
-linkedlist::linkedlist(){
+//Basic Linked List structure setup
+linkedlist::linkedlist(){   
     tail = nullptr;
     head = nullptr;
 }
 
-void linkedlist::insert(listMember* memberToInsert){
+//Function to insert member into the linked list
+void linkedlist::insert(listMember* memberToInsert){ 
+    //If list is empty
     if(head == nullptr){
         memberToInsert->next = nullptr;
         tail = memberToInsert;
         head = memberToInsert;
-    }else{
+    }
+    //Insert after empty member
+    else{ 
         tail->next = memberToInsert;
         tail = memberToInsert;
         memberToInsert->next = nullptr;
     }
 }
 
+//Function to delete specific member
 void linkedlist::remove(listMember* memberToRemove){
+    //Case to reduce traversal time if member is head of list
     if(head == memberToRemove){
         head = memberToRemove->next;
         delete memberToRemove;
-    }else if(tail == memberToRemove){
+    }
+    //Case to reduce traversal time if member is tail of list
+    else if(tail == memberToRemove){
         listMember* prevMember = head;
         while(prevMember->next != memberToRemove){
             prevMember = prevMember->next;
@@ -29,7 +39,9 @@ void linkedlist::remove(listMember* memberToRemove){
         tail = prevMember;
         prevMember->next = nullptr;
         delete memberToRemove;
-    }else{
+    }
+    //Case to traverse list to find member to remove
+    else{
         listMember* prevMember = head;
         while(prevMember->next != memberToRemove){
             prevMember = prevMember->next;
@@ -40,8 +52,10 @@ void linkedlist::remove(listMember* memberToRemove){
     }
 }
 
+//Function to search for member using ID
 listMember* linkedlist::search_with_ID(int idtoSearch){
     listMember* currMember = head;
+    //While loop to traverse through list
     while (currMember != nullptr){
         if(currMember->ID == idtoSearch){
             return currMember;
@@ -54,8 +68,10 @@ listMember* linkedlist::search_with_ID(int idtoSearch){
     return nullptr;
 }
 
+//Function to search for member using ID
 listMember* linkedlist::search_with_name(string nameToSearch){
     listMember* currMember = head;
+    //While loop to traverse through list
     while (currMember != nullptr){
         if(currMember->name == nameToSearch){
             return currMember;
