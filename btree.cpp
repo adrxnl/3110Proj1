@@ -63,8 +63,8 @@ int AVLTree::get_height(TreeMember* targetMember){
 }
 
 int AVLTree::get_difference(TreeMember* targetMember){
-    int left_height = get_height(targetMember);
-    int right_height = get_height(targetMember);
+    int left_height = get_height(targetMember->left);
+    int right_height = get_height(targetMember->right);
     int balance_factor = left_height - right_height;
     return balance_factor;
 }
@@ -116,10 +116,11 @@ TreeMember* AVLTree::balance(TreeMember* targetMember){
     }
     return targetMember;
 }
+
 TreeMember* AVLTree::insert(TreeMember* currRoot,TreeMember* memberToAdd){
-    if(currRoot = nullptr){
+    if(currRoot == nullptr){
         currRoot = memberToAdd;
-        return;
+        return currRoot;
     }else if(memberToAdd->ID < currRoot->ID){
         currRoot->left = insert(currRoot->left, memberToAdd);
         currRoot = balance(currRoot);
