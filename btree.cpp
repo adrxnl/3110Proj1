@@ -42,12 +42,7 @@ TreeMember* AVLTree::search_with_ID(int searchID){
 
 
 void AVLTree::remove(int searchID){
-    TreeMember* targetNode = search_with_ID(searchID);
-    if(targetNode = nullptr){
-        cout << "could not remove no target found wiht ID#" << searchID << endl;
-    }
-
-    
+    root = remove(root, searchID);
 }
 
 
@@ -99,7 +94,7 @@ TreeMember* AVLTree::rl_rotate(TreeMember* parentNode){
 TreeMember* AVLTree::balance(TreeMember* targetMember){
     int balance_factor = get_difference(targetMember);
     if(balance_factor > 1){
-        if(get_difference(targetMember->left) > 0){
+        if(get_difference(targetMember->left) >= 0){
             targetMember = ll_rotate(targetMember);
         }
         else{
@@ -129,4 +124,60 @@ TreeMember* AVLTree::insert(TreeMember* currRoot,TreeMember* memberToAdd){
         currRoot = balance(currRoot);
     }
     return currRoot;
+}
+
+TreeMember* AVLTree::remove(TreeMember* currRoot, int searchID){
+    if(currRoot == nullptr){
+        cout << "Could not remove, no target found with ID#" << searchID << endl;
+        return currRoot;
+    }
+    if(searchID < currRoot->ID){
+        currRoot->left = remove(currRoot->left, searchID);
+    }else if(searchID > currRoot->ID){
+        currRoot->right = remove(currRoot->right, searchID);
+    }else{
+        // Node with only one child or no child
+        if(currRoot->left == nullptr || currRoot->right == nullptr){
+            TreeMember* temp = currRoot->left ? currRoot->left : currRoot->right;
+
+            // No child case
+            if(temp == nullptr){
+                temp = currRoot;
+                currRoot = nullptr;
+            }else{ // One child case
+                *currRoot = *temp; // Copy the contents of the non-empty child
+            }
+            delete temp;
+        }else{
+            // Node with two children: Get the inorder successor (smallest in the right subtree)
+            TreeMember* temp = minValueNode(currRoot->right);
+
+            // Copy the inorder successor's data to this node
+            currRoot->ID = temp->ID;
+
+            // Delete the inorder successor
+            currRoot->right = remove(currRoot->right, temp->ID);
+        }
+    }
+
+    // If the tree had only one node, then return
+    if(currRoot == nullptr){
+        return currRoot;
+    }
+
+    // Update height of the current node
+    currRoot = balance(currRoot);
+
+    return currRoot;
+}
+
+// Function to find the node with minimum value in a tree rooted at currRoot
+TreeMember* AVLTree::minValueNode(TreeMember* currRoot){
+    TreeMember* current = currRoot;
+
+    // Loop down to find the leftmost leaf
+    while(current->left != nullptr){
+        current = current->left;
+    }
+    return current;
 }
