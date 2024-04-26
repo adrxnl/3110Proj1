@@ -28,7 +28,8 @@ public:
     AVLTree();
     TreeMember* insert(TreeMember* currRoot, TreeMember* memberToAdd);
     TreeMember* search_with_ID(int searchID);
-    void remove(int searchID);
+    TreeMember* remove(TreeMember* currRoot, int searchID);
+    TreeMember* minValueNode(TreeMember* currRoot);
     TreeMember* balance(TreeMember* targetMember);
     int get_height(TreeMember* targetMember);
     int get_difference(TreeMember* targetMember);

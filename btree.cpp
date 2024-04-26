@@ -41,10 +41,10 @@ TreeMember* AVLTree::search_with_ID(int searchID){
 
 
 
-void AVLTree::remove(int searchID){
+/*void AVLTree::remove(int searchID){
     root = remove(root, searchID);
 }
-
+*/
 
 int AVLTree::get_height(TreeMember* targetMember){
     int height = 0;
