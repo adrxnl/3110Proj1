@@ -17,7 +17,7 @@ listMember::listMember(int ID, string name, string birthDate, string streetAddre
 
 void listMember::displayMember(){
     cout << "ID: " << this->ID;
-    cout << "\nName: " << this->cityName;
+    cout << "\nName: " << this->name;
     cout << "\nBirthday: " << this->birthDate;
     cout << "\nAddress: " << this->streetAddress << ", " << this->cityName << ", " << this->currentState << ", " << this->zipcode << endl;
 }

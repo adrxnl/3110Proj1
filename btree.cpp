@@ -17,7 +17,7 @@ TreeMember::TreeMember(int ID, string name, string birthDate, string streetAddre
 
 void TreeMember::displayMember(){
     cout << "ID: " << this->ID;
-    cout << "\nName: " << this->cityName;
+    cout << "\nName: " << this->name;
     cout << "\nBirthday: " << this->birthDate;
     cout << "\nAddress: " << this->streetAddress << ", " << this->cityName << ", " << this->currentState << ", " << this->zipcode << endl;
 }
@@ -30,6 +30,10 @@ AVLTree::AVLTree()
 
 TreeMember* AVLTree::get_root(){
     return this->root;
+}
+
+void AVLTree::update_root(TreeMember* newRoot){
+    this->root = newRoot;
 }
 
 TreeMember* AVLTree::search_with_ID(int searchID){
@@ -129,7 +133,7 @@ TreeMember* AVLTree::insert(TreeMember* currRoot,TreeMember* memberToAdd){
         currRoot->right = insert(currRoot->right, memberToAdd);
         currRoot = balance(currRoot);
     }
-    return currRoot;
+    return currRoot;//in the end it will return the new root node
 }
 
 TreeMember* AVLTree::remove(TreeMember* currRoot, int searchID){

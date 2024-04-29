@@ -29,6 +29,7 @@ private:
 public:
     AVLTree();
     TreeMember* get_root();
+    void update_root(TreeMember* newRoot);
     TreeMember* insert(TreeMember* currRoot, TreeMember* memberToAdd);
     TreeMember* search_with_ID(int searchID);
     TreeMember* remove(TreeMember* currRoot, int searchID);
