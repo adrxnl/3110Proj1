@@ -41,6 +41,8 @@ public:
     TreeMember* ll_rotate(TreeMember* parentNode);
     TreeMember* lr_rotate(TreeMember* parentNode);
     TreeMember* rl_rotate(TreeMember* parentNode);
+    TreeMember* rightRotate(TreeMember *y);
+    TreeMember* leftRotate(TreeMember *x);
 };  
 
 

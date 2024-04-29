@@ -17,30 +17,37 @@ int main(){
 
 
    int userChoice = -1;
-/*
+   int amountOfRotations = 1;
+
     do{
+        amountOfRotations++;
         displayMenu();
         cout << "\nEnter selection: ";
         cin >> userChoice;
+
         switch(userChoice){
             case 1://insert
-                
-
+                insert_into_structures(userTree, userList, amountOfRotations);
                 break;
             case 2://remove
+                remove_from_structures(userTree, userList);
                 break;
             case 3://ID search
+                search_with_ID(userTree, userList);
                 break;
             case 4://Name search
+                search_with_name(userTree, userList);
                 break;
             case 5://update
+                cout << "still working on this shi";
                 break;
             case 6://exit
                 break;
             default: 
+
+                cout << "Invalid input try again\n";
         }
     }while(userChoice != 6);
-*/
 
     return 0;
 

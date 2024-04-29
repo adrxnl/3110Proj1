@@ -5,7 +5,7 @@
 //#define MAIN_HELPER_CPP
 
 void displayMenu(){
-    cout << "Select an action to execute: \n\n";
+    cout << "\n\nSelect an action to execute: \n\n";
     cout << "1. Add student.\n";
     cout << "2. Remove student.\n";
     cout << "3. Search student by ID.\n";
@@ -72,6 +72,7 @@ void insert_into_structures(AVLTree* userTree, linkedlist* userList, int amountO
     string name, birthDate, streetAddress, currentState, cityName;
 
     ID = 2000000 + amountOfRotations;
+    cin.ignore();
     cout << "Enter Name of Student to be added: ";
     getline(cin, name);
     cout << "Enter birth Date (YYYY-MM-DD): ";
@@ -97,15 +98,58 @@ void insert_into_structures(AVLTree* userTree, linkedlist* userList, int amountO
 }
 
 void remove_from_structures(AVLTree* userTree, linkedlist* userList){
+    cout << "Enter ID of student to be removed: ";
+    int searchID;
+    cin >> searchID;
 
+    if(userList->search_with_ID(searchID) == nullptr){
+        cout << "Could not find student with ID#: " << searchID << endl;
+        return;
+    }
+
+    userTree->update_root(userTree->remove(userTree->get_root(), searchID));
+    userList->remove(userList->search_with_ID(searchID));
 }
 
 void search_with_ID(AVLTree* userTree, linkedlist* userList){
+    cout << "Enter ID of student to be searched: ";
+    int searchID;
+    cin >> searchID;
 
+    TreeMember* treeSearchMember = userTree->search_with_ID(searchID);
+
+    listMember* listSearchMember = userList->search_with_ID(searchID);
+
+    if(treeSearchMember == nullptr || listSearchMember == nullptr){
+        cout << "Could not find student with id# " << searchID << endl;
+        return;
+    }
+
+    cout << "\nTree Member:\n";
+    treeSearchMember->displayMember();
+
+    cout << "\n\nList Member:\n";
+    listSearchMember->displayMember(); 
 }
 
 void search_with_name(AVLTree* userTree, linkedlist* userList){
+    cout << "Enter name of student: ";
+    cin.ignore();
+    string searchName;
+    getline(cin, searchName);
 
+
+    //FIXME add search with name for AVLTree
+
+    listMember* listSearchMember = userList->search_with_name(searchName);
+
+    if(listSearchMember == nullptr){
+        cout << "Could not find student with name: " << searchName << endl;
+        return;
+    }
+
+    listSearchMember->displayMember();
+    cout << endl;
 }
 
 //#endif
