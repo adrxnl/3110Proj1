@@ -1,24 +1,46 @@
 //H file call for linked list file
 #include "linkedlist.hpp" 
 
+#ifndef LL_CPP
+#define LL_CPP
+
+listMember::listMember(int ID, string name, string birthDate, string streetAddress, string currentState, string cityName, int zipcode){
+    this->ID = ID;
+    this->name = name;
+    this->birthDate = birthDate;
+    this->streetAddress = streetAddress;
+    this->currentState = currentState;
+    this->cityName = cityName;
+    this->zipcode = zipcode;
+    this->next = nullptr;
+}
+
+void listMember::displayMember(){
+    cout << "ID: " << this->ID;
+    cout << "\nName: " << this->cityName;
+    cout << "\nBirthday: " << this->birthDate;
+    cout << "\nAddress: " << this->streetAddress << ", " << this->cityName << ", " << this->currentState << ", " << this->zipcode << endl;
+}
+
+
 //Basic Linked List structure setup
 linkedlist::linkedlist(){   
-    tail = nullptr;
-    head = nullptr;
+    tail = NULL;
+    head = NULL;
+    cout << "Properly INitiazlise\n";
 }
 
 //Function to insert member into the linked list
 void linkedlist::insert(listMember* memberToInsert){ 
     //If list is empty
-    if(head == nullptr){
+    if(this->head == NULL){
         memberToInsert->next = nullptr;
-        tail = memberToInsert;
-        head = memberToInsert;
+        this->tail = memberToInsert;
+        this->head = memberToInsert;
     }
-    //Insert after empty member
-    else{ 
-        tail->next = memberToInsert;
-        tail = memberToInsert;
+    else{//if list is not empty 
+        this->tail->next = memberToInsert;
+        this->tail = memberToInsert;
         memberToInsert->next = nullptr;
     }
 }
@@ -83,3 +105,5 @@ listMember* linkedlist::search_with_name(string nameToSearch){
     
     return nullptr;
 }
+
+#endif

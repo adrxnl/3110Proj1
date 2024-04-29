@@ -1,5 +1,7 @@
 #include "btree.hpp"
 
+#ifndef B_TREE_CPP
+#define B_TREE_CPP
 
 TreeMember::TreeMember(int ID, string name, string birthDate, string streetAddress, string currentState, string cityName, int zipcode){
     this->ID = ID;
@@ -24,6 +26,10 @@ void TreeMember::displayMember(){
 AVLTree::AVLTree()
 {
     root = nullptr;
+}
+
+TreeMember* AVLTree::get_root(){
+    return this->root;
 }
 
 TreeMember* AVLTree::search_with_ID(int searchID){
@@ -181,3 +187,6 @@ TreeMember* AVLTree::minValueNode(TreeMember* currRoot){
     }
     return current;
 }
+
+
+#endif

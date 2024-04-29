@@ -1,10 +1,12 @@
 #include <iostream>
 #include <string>
 #include<queue>
+#include<fstream>
+#include<sstream>
 using namespace std;
 
-//#ifndef B_TREE_HPP
-//#define B_TREE_HPP
+#ifndef B_TREE_HPP
+#define B_TREE_HPP
 
 class TreeMember{
     public:
@@ -26,6 +28,7 @@ private:
     TreeMember* root;
 public:
     AVLTree();
+    TreeMember* get_root();
     TreeMember* insert(TreeMember* currRoot, TreeMember* memberToAdd);
     TreeMember* search_with_ID(int searchID);
     TreeMember* remove(TreeMember* currRoot, int searchID);
@@ -41,4 +44,4 @@ public:
 
 
 
-//#endif
+#endif

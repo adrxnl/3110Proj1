@@ -1,6 +1,9 @@
 //Include to read to main
 #include "btree.hpp"
 
+#ifndef LL_HPP
+#define LL_HPP
+
 //Class definition of "listMember"
 class listMember{
     //All variables and creation function
@@ -14,7 +17,7 @@ class listMember{
         int zipcode;
         listMember* next;
         void displayMember();
-        listMember(int ID, string name, string birthDate, string streetAddress, string cityName, int zipcode);
+        listMember(int ID, string name, string birthDate, string streetAddress, string currentState, string cityName, int zipcode);
 };
 
 //Class definition of "linkedlist"
@@ -33,3 +36,5 @@ class linkedlist{
         listMember* search_with_ID(int idToSearch);
 
 };
+
+#endif
