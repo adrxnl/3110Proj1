@@ -39,7 +39,7 @@ int main(){
                 search_with_name(userTree, userList);
                 break;
             case 5://update
-                cout << "still working on this shi";
+                update_member(userTree, userList);
                 break;
             case 6://exit
                 break;

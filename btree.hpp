@@ -21,6 +21,7 @@ class TreeMember{
         TreeMember* right;
     TreeMember(int ID, string name, string birthDate, string streetAddress, string currentState, string cityName, int zipcode);
     void displayMember();
+    void updateMember(string name, string birthDate, string streetAddress, string currentState, string cityName, int zipcode);
 };
 
 class AVLTree{

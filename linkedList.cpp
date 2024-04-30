@@ -22,12 +22,20 @@ void listMember::displayMember(){
     cout << "\nAddress: " << this->streetAddress << ", " << this->cityName << ", " << this->currentState << ", " << this->zipcode << endl;
 }
 
+void listMember::updateMember(string name, string birthDate, string streetAddress, string currentState, string cityName, int zipcode){
+    this->name = name;
+    this->birthDate = birthDate;
+    this->streetAddress = streetAddress;
+    this->currentState = currentState;
+    this->cityName = cityName;
+    this->zipcode = zipcode;
+}
+
 
 //Basic Linked List structure setup
 linkedlist::linkedlist(){   
     tail = NULL;
     head = NULL;
-    cout << "Properly INitiazlise\n";
 }
 
 //Function to insert member into the linked list

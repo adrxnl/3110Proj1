@@ -22,6 +22,14 @@ void TreeMember::displayMember(){
     cout << "\nAddress: " << this->streetAddress << ", " << this->cityName << ", " << this->currentState << ", " << this->zipcode << endl;
 }
 
+void TreeMember::updateMember(string name, string birthDate, string streetAddress, string currentState, string cityName, int zipcode){
+    this->name = name;
+    this->birthDate = birthDate;
+    this->streetAddress = streetAddress;
+    this->currentState = currentState;
+    this->cityName = cityName;
+    this->zipcode = zipcode;
+}
 
 AVLTree::AVLTree()
 {

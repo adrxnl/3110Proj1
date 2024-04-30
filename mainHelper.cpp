@@ -139,8 +139,6 @@ void search_with_name(AVLTree* userTree, linkedlist* userList){
     getline(cin, searchName);
 
 
-    //FIXME add search with name for AVLTree
-
     listMember* listSearchMember = userList->search_with_name(searchName);
 
     if(listSearchMember == nullptr){
@@ -151,5 +149,47 @@ void search_with_name(AVLTree* userTree, linkedlist* userList){
     listSearchMember->displayMember();
     cout << endl;
 }
+
+void update_member(AVLTree* userTree, linkedlist* userList){
+    cout << "Enter ID of student to update: ";
+    int searchID;
+    cin >> searchID;
+
+    TreeMember* treeTargetMember = userTree->search_with_ID(searchID);
+    listMember* listTargetMember = userList->search_with_ID(searchID);
+
+    if(treeTargetMember == nullptr || listTargetMember == nullptr){
+        cout << "could not find student with ID#: " << searchID << endl;
+        return;
+    }
+    int zipcode;
+    string name,birthDate,streetAddress,currentState,cityName;
+
+
+    cout << "Current data:\n";
+    listTargetMember->displayMember();
+    cin.ignore();
+    cout << "\n\nEnter new name: ";
+    getline(cin,name);
+    cout << "Enter new birth date(YYYY-MM-DD): ";
+    cin >> birthDate;
+    cin.ignore();
+    cout << "Enter new street Address: ";
+    getline(cin, streetAddress);
+    cout << "Enter new state: ";
+    cin >> currentState;
+    cin.ignore();
+    cout << "Enter new City name: ";
+    getline(cin, cityName);
+    cout << "Enter new zipcode(numerical): ";
+    cin >> zipcode;
+
+    treeTargetMember->updateMember(name,birthDate, streetAddress, currentState, cityName, zipcode);
+    listTargetMember->updateMember(name,birthDate, streetAddress, currentState, cityName, zipcode);
+
+    cout << "\n\nNew data:\n";
+    treeTargetMember->displayMember();
+}
+
 
 //#endif

@@ -18,6 +18,7 @@ class listMember{
         listMember* next;
         void displayMember();
         listMember(int ID, string name, string birthDate, string streetAddress, string currentState, string cityName, int zipcode);
+        void updateMember(string name, string birthDate, string streetAddress, string currentState, string cityName, int zipcode);
 };
 
 //Class definition of "linkedlist"
