@@ -60,10 +60,6 @@ TreeMember* AVLTree::search_with_ID(int searchID){
 
 
 
-/*void AVLTree::remove(int searchID){
-    root = remove(root, searchID);
-}
-*/
 
 int AVLTree::get_height(TreeMember* targetMember){
     int height = 0;
@@ -161,34 +157,19 @@ TreeMember* AVLTree::minValueNode(TreeMember* currRoot){
 TreeMember* AVLTree::remove(TreeMember* currRoot, int searchID){ 
     if (currRoot == NULL) 
         return currRoot; 
- 
-    // If the key to be deleted is smaller 
-    // than the root's key, then it lies
-    // in left subtree 
+    // If the key to be deleted is smallerthan the root's key, then it lies in left subtree 
     if ( searchID < currRoot->ID ) 
         root->left = remove(currRoot->left, searchID); 
- 
-    // If the key to be deleted is greater 
-    // than the root's key, then it lies 
-    // in right subtree 
+    // If the key to be deleted is greater than the root's key, then it lies in right subtree 
     else if( searchID < currRoot->ID ) 
-        root->right = remove(currRoot->right, searchID); 
- 
-    // if key is same as root's key, then 
-    // This is the node to be deleted 
-    else
-    { 
+        root->right = remove(currRoot->right, searchID);
+    // if key is same as root's key, then This is the node to be deleted 
+    else{ 
         // node with only one child or no child 
-        if( (currRoot->left == NULL) ||
-            (currRoot->right == NULL) ) 
-        { 
-            TreeMember* temp = currRoot->left ? 
-                         currRoot->left : 
-                         currRoot->right; 
- 
+        if( (currRoot->left == NULL) || (currRoot->right == NULL) ) { 
+            TreeMember* temp = currRoot->left ?  currRoot->left : currRoot->right; 
             // No child case 
-            if (temp == NULL) 
-            { 
+            if (temp == NULL) { 
                 temp = currRoot; 
                 currRoot = NULL; 
             } 
@@ -199,14 +180,10 @@ TreeMember* AVLTree::remove(TreeMember* currRoot, int searchID){
         } 
         else
         { 
-            // node with two children: Get the inorder 
-            // successor (smallest in the right subtree) 
+            // node with two children: Get the inorde successor (smallest in the right subtree) 
             TreeMember* temp = minValueNode(currRoot->right); 
- 
-            // Copy the inorder successor's 
-            // data to this node 
+            // Copy the inorder successor's data to this node 
             currRoot->ID = temp->ID; 
- 
             // Delete the inorder successor 
             currRoot->right = remove(currRoot->right, temp->ID); 
         } 
@@ -216,9 +193,7 @@ TreeMember* AVLTree::remove(TreeMember* currRoot, int searchID){
     if (currRoot == NULL) 
     return currRoot; 
  
- 
-    // THIS NODE (to check whether this 
-    // node became unbalanced) 
+    //to check whether this node became unbalanced) 
     int balance = get_difference(currRoot);  
  
     // Left Left Case 
@@ -249,10 +224,6 @@ TreeMember* AVLTree::remove(TreeMember* currRoot, int searchID){
  
     return currRoot; 
 } 
-
-
-
-
 
 TreeMember* AVLTree::rightRotate(TreeMember *y){ 
     TreeMember *x = y->left; 
