@@ -35,7 +35,6 @@ void loadLinkedList(string fileName, linkedlist* userList){
         listMember* newMember = new listMember(stoi(dataMembers.at(0)), dataMembers.at(1), dataMembers.at(2), dataMembers.at(3), dataMembers.at(4), dataMembers.at(5), stoi(dataMembers.at(6)));
         userList->insert(newMember);
     }
-    
     fileStream.close();
 }
 
@@ -46,9 +45,11 @@ void loadAVL(string fileName, AVLTree* userTree){
         cout << "Could not open the file\n";
         return;
     }
-
+    cout << "\nLoading AVL\n";
     string currLine;
+    int counter = 0;
     while(getline(fileStream, currLine)){
+        counter++;
         vector<string> dataMembers;
         string token;
         stringstream sStream(currLine);
@@ -59,7 +60,9 @@ void loadAVL(string fileName, AVLTree* userTree){
 
         TreeMember* newMember = new TreeMember(stoi(dataMembers.at(0)), dataMembers.at(1), dataMembers.at(2), dataMembers.at(3), dataMembers.at(4), dataMembers.at(5), stoi(dataMembers.at(6)));
         userTree->update_root(userTree->insert(userTree->get_root(), newMember));
-
+        if(counter % 1000 == 0){
+            cout << "\nLoaded 1000, current #" << counter << endl;
+        }
     }
     
     fileStream.close();
@@ -71,7 +74,7 @@ void insert_into_structures(AVLTree* userTree, linkedlist* userList, int amountO
     int ID, zipcode;
     string name, birthDate, streetAddress, currentState, cityName;
 
-    ID = 2000000 + amountOfRotations;
+    ID = 2100000 + amountOfRotations;
     cin.ignore();
     cout << "Enter Name of Student to be added: ";
     getline(cin, name);
