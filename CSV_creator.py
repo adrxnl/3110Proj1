@@ -1,3 +1,6 @@
+#This file creates a CSV of 100000 members that each have a fake
+#name, birthday, address, and ID
+
 from faker import Faker
 import random
 import datetime
