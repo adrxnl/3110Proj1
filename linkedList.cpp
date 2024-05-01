@@ -4,6 +4,8 @@
 #ifndef LL_CPP
 #define LL_CPP
 
+
+//Fucntion to fill in new node data
 listMember::listMember(int ID, string name, string birthDate, string streetAddress, string currentState, string cityName, int zipcode){
     this->ID = ID;
     this->name = name;
@@ -15,6 +17,7 @@ listMember::listMember(int ID, string name, string birthDate, string streetAddre
     this->next = nullptr;
 }
 
+//Fucntion to display a given node's data
 void listMember::displayMember(){
     cout << "ID: " << this->ID;
     cout << "\nName: " << this->name;
@@ -22,6 +25,7 @@ void listMember::displayMember(){
     cout << "\nAddress: " << this->streetAddress << ", " << this->cityName << ", " << this->currentState << ", " << this->zipcode << endl;
 }
 
+//Fucntion to update an existing node by taking in new parameters 
 void listMember::updateMember(string name, string birthDate, string streetAddress, string currentState, string cityName, int zipcode){
     this->name = name;
     this->birthDate = birthDate;
