@@ -1,3 +1,6 @@
+//This is the C++ file containing all the implemented 
+//functions of the listMember and linkedList classes
+
 //H file call for linked list file
 #include "linkedlist.hpp" 
 
