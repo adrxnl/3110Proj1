@@ -1,3 +1,6 @@
+//This is the C++ file containing all the implemented 
+//functions of the TreeMember and AVLTree classes
+
 #include "btree.hpp"
 
 #ifndef B_TREE_CPP
