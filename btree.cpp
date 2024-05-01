@@ -3,6 +3,7 @@
 #ifndef B_TREE_CPP
 #define B_TREE_CPP
 
+//Basic creation of a a AVL Tree member node. Takes in all node data at once and assigns it to new node
 TreeMember::TreeMember(int ID, string name, string birthDate, string streetAddress, string currentState, string cityName, int zipcode){
     this->ID = ID;
     this->name = name;
@@ -15,6 +16,7 @@ TreeMember::TreeMember(int ID, string name, string birthDate, string streetAddre
     this->right = nullptr;
 }
 
+//Cout statements to display node data
 void TreeMember::displayMember(){
     cout << "ID: " << this->ID;
     cout << "\nName: " << this->name;
@@ -22,6 +24,7 @@ void TreeMember::displayMember(){
     cout << "\nAddress: " << this->streetAddress << ", " << this->cityName << ", " << this->currentState << ", " << this->zipcode << endl;
 }
 
+//Fucntion to update a single node's data. Takes in new values to write over old ones
 void TreeMember::updateMember(string name, string birthDate, string streetAddress, string currentState, string cityName, int zipcode){
     this->name = name;
     this->birthDate = birthDate;
@@ -31,19 +34,24 @@ void TreeMember::updateMember(string name, string birthDate, string streetAddres
     this->zipcode = zipcode;
 }
 
+
+//AVL Tree creation. Only makes root node
 AVLTree::AVLTree()
 {
     root = nullptr;
 }
 
+//Function to return the root of an AVL Tree
 TreeMember* AVLTree::get_root(){
     return this->root;
 }
 
+//Function to change the root of a tree. Replaces old root with new root parameter
 void AVLTree::update_root(TreeMember* newRoot){
     this->root = newRoot;
 }
 
+//Function to search through an AVL Tree for a node. Uses ID int to perform search
 TreeMember* AVLTree::search_with_ID(int searchID){
     TreeMember* currNode = this->root;
     while(currNode != nullptr){
@@ -60,7 +68,7 @@ TreeMember* AVLTree::search_with_ID(int searchID){
 
 
 
-
+//Returns the height of a given tree using recursive functions. Checks both left and right branches to find the higher of the two
 int AVLTree::get_height(TreeMember* targetMember){
     int height = 0;
     if(targetMember != nullptr){
@@ -72,6 +80,7 @@ int AVLTree::get_height(TreeMember* targetMember){
     return height;
 }
 
+//Returns the difference in height for the left and right branches. Used to balance tree
 int AVLTree::get_difference(TreeMember* targetMember){
     int left_height = get_height(targetMember->left);
     int right_height = get_height(targetMember->right);
@@ -79,6 +88,7 @@ int AVLTree::get_difference(TreeMember* targetMember){
     return balance_factor;
 }
 
+//Performs a Right-Right rotate at a given tree node
 TreeMember* AVLTree::rr_rotate(TreeMember* parentNode){
     TreeMember* tempNode = parentNode->right;
     parentNode->right = tempNode->left;
@@ -86,6 +96,8 @@ TreeMember* AVLTree::rr_rotate(TreeMember* parentNode){
     return tempNode;
 }
 
+
+//Performs a Left-Left rotate at a given tree node
 TreeMember* AVLTree::ll_rotate(TreeMember* parentNode){
     TreeMember* tempNode = parentNode->left;
     parentNode->left = tempNode->right;
@@ -93,19 +105,22 @@ TreeMember* AVLTree::ll_rotate(TreeMember* parentNode){
     return tempNode;
 }
 
+
+//Performs a Left-Right rotate at a given tree node
 TreeMember* AVLTree::lr_rotate(TreeMember* parentNode){
     TreeMember* tempNode = parentNode->left;
     parentNode->left = rr_rotate(tempNode);
     return ll_rotate(parentNode);
 }
 
+//Performs a Right-Left rotate at a given tree node
 TreeMember* AVLTree::rl_rotate(TreeMember* parentNode){
     TreeMember* tempNode = parentNode->right;
     parentNode->right = ll_rotate(tempNode);
     return rr_rotate(parentNode);
 }
 
-
+//Function used to balance a tree at a given member. uses get_difference function to determine height difference
 TreeMember* AVLTree::balance(TreeMember* targetMember){
     int balance_factor = get_difference(targetMember);
     if(balance_factor > 1){
@@ -127,6 +142,7 @@ TreeMember* AVLTree::balance(TreeMember* targetMember){
     return targetMember;
 }
 
+//Funciton used to insert node into AVL Tree. Takes in Tree root and new node to add to sort.
 TreeMember* AVLTree::insert(TreeMember* currRoot,TreeMember* memberToAdd){
     if(currRoot == nullptr){
         currRoot = memberToAdd;
@@ -153,7 +169,7 @@ TreeMember* AVLTree::minValueNode(TreeMember* currRoot){
 }
 
 
-
+//Fucntion to remoce a tree node, by taking in the tree's root and ID to search for node to delete
 TreeMember* AVLTree::remove(TreeMember* currRoot, int searchID){ 
     if (currRoot == NULL) 
         return currRoot; 
@@ -225,6 +241,7 @@ TreeMember* AVLTree::remove(TreeMember* currRoot, int searchID){
     return currRoot; 
 } 
 
+//Fucntion to singly roate tree node Right 
 TreeMember* AVLTree::rightRotate(TreeMember *y){ 
     TreeMember *x = y->left; 
     TreeMember *T2 = x->right; 
@@ -235,7 +252,8 @@ TreeMember* AVLTree::rightRotate(TreeMember *y){
  
     return x; 
 } 
-  
+
+//Fucntion to singly roate tree node Left
 TreeMember* AVLTree::leftRotate(TreeMember *x){ 
     TreeMember *y = x->right; 
     TreeMember *T2 = y->left; 
