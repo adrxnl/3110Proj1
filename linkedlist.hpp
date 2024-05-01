@@ -1,3 +1,7 @@
+//This is the Linked List header file, which declares 
+//all of the appropriate variables and functions within 
+//the List Member and Linked List Classes
+
 //Include to read to main
 #include "btree.hpp"
 
