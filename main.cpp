@@ -1,3 +1,6 @@
+//This is the main file that creates a linked list and AVL tree full of 
+//fake members for the user to view, manipulate, and evaluate time complexity. 
+
 #include "btree.hpp"
 #include "linkedlist.hpp"
 #include "mainHelper.cpp"
@@ -7,11 +10,12 @@
 
 
 int main(){
-    AVLTree* userTree = new AVLTree();
-    linkedlist* userList = new linkedlist();
+    AVLTree* userTree = new AVLTree(); //Tree structure
+    linkedlist* userList = new linkedlist(); //Linked List structure
     string fileName = "fakePersonData.csv";
 
-    loadLinkedList(fileName, userList);
+    //Load both structures
+    loadLinkedList(fileName, userList); 
     loadAVL(fileName, userTree);
 
 
@@ -19,6 +23,7 @@ int main(){
    int userChoice = -1;
    int amountOfRotations = 1;
 
+    //Menu selection 
     do{
         amountOfRotations++;
         displayMenu();
