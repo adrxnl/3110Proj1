@@ -1,9 +1,12 @@
+//This file implements methods for the main file to load and simultaneously utilize both structures
+
 #include "btree.hpp"
 #include "linkedlist.hpp"
 
 //#ifdef MAIN_HELPER_CPP
 //#define MAIN_HELPER_CPP
 
+//Function to display options to the user
 void displayMenu(){
     cout << "\n\nSelect an action to execute: \n\n";
     cout << "1. Add student.\n";
@@ -14,7 +17,7 @@ void displayMenu(){
     cout << "6. Exit.\n";
 }
 
-
+//Function that loads the linked list with members from the csv file
 void loadLinkedList(string fileName, linkedlist* userList){
     ifstream fileStream(fileName);
 
@@ -38,6 +41,7 @@ void loadLinkedList(string fileName, linkedlist* userList){
     fileStream.close();
 }
 
+//Function that loads the AVL tree with members from the csv file
 void loadAVL(string fileName, AVLTree* userTree){
     ifstream fileStream(fileName);
 
@@ -68,7 +72,7 @@ void loadAVL(string fileName, AVLTree* userTree){
     fileStream.close();
 }
 
-
+//Function that creates a member that is then inserted into both structures
 void insert_into_structures(AVLTree* userTree, linkedlist* userList, int amountOfRotations){
 
     int ID, zipcode;
@@ -100,6 +104,7 @@ void insert_into_structures(AVLTree* userTree, linkedlist* userList, int amountO
 
 }
 
+//Function that removes a member with the given ID from both structures
 void remove_from_structures(AVLTree* userTree, linkedlist* userList){
     cout << "Enter ID of student to be removed: ";
     int searchID;
@@ -114,6 +119,7 @@ void remove_from_structures(AVLTree* userTree, linkedlist* userList){
     userList->remove(userList->search_with_ID(searchID));
 }
 
+//Function that calls both search by ID functions the structures
 void search_with_ID(AVLTree* userTree, linkedlist* userList){
     cout << "Enter ID of student to be searched: ";
     int searchID;
@@ -135,6 +141,7 @@ void search_with_ID(AVLTree* userTree, linkedlist* userList){
     listSearchMember->displayMember(); 
 }
 
+//Function that calls both search by name functions for both structures
 void search_with_name(AVLTree* userTree, linkedlist* userList){
     cout << "Enter name of student: ";
     cin.ignore();
@@ -153,6 +160,7 @@ void search_with_name(AVLTree* userTree, linkedlist* userList){
     cout << endl;
 }
 
+//Function that calls both update functions of both structures given an ID
 void update_member(AVLTree* userTree, linkedlist* userList){
     cout << "Enter ID of student to update: ";
     int searchID;
